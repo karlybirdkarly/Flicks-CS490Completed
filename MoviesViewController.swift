@@ -58,11 +58,13 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.insertSubview(refreshControl, atIndex: 0)
         
         //dismissKeyboard when user taps screen
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
-        view.addGestureRecognizer(tap)
+//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+//        view.addGestureRecognizer(tap)
         
         self.collectionView.hidden = true
         networkErrorView.hidden = true
+        tableView.backgroundColor = UIColor.blackColor()
+        
         
         //MARK: - data sourses and delegates for collection view and table view
         tableView.dataSource = self
@@ -175,6 +177,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         searchBar.showsCancelButton = false
         searchBar.text = ""
         searchBar.resignFirstResponder()
+        
     }
 
   //MARK: - Table View
@@ -311,9 +314,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         })
     }
     //MARK: - Dismiss keyboard
-    func dismissKeyboard() {
-        searchBar.endEditing(true)
-    }
+//    func dismissKeyboard() {
+//        searchBar.endEditing(true)
+//    }
     //MARK: - Status bar style
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent;
