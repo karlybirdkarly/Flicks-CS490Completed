@@ -48,6 +48,7 @@
                                         <inset key="insetFor6xAndEarlier" minX="-10" minY="0.0" maxX="10" maxY="0.0"/>
                                         <connections>
                                             <outlet property="posterImage" destination="zLM-Vk-SCZ" id="66X-H9-gem"/>
+                                            <segue destination="Nx8-k7-nVB" kind="push" id="aPX-qB-wpt"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -76,18 +77,18 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieCell" rowHeight="137" id="gpP-IL-rmp" customClass="MovieCell" customModule="MovieViewer" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MovieCell" rowHeight="137" id="gpP-IL-rmp" customClass="MovieCell" customModule="MovieViewer" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="137"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gpP-IL-rmp" id="7gp-Jv-W8v">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="136.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="137"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="csa-jb-wha">
                                                     <rect key="frame" x="109" y="0.0" width="203" height="23"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="20"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="textColor" red="0.39607843139999999" green="0.5450980392" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overview" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WF7-yz-LsD">
@@ -108,6 +109,7 @@
                                             <outlet property="overviewLabel" destination="WF7-yz-LsD" id="1au-8w-BSO"/>
                                             <outlet property="posterView" destination="FOe-T3-nqu" id="H6r-Gg-eFL"/>
                                             <outlet property="titleLabel" destination="csa-jb-wha" id="PMN-2A-iKg"/>
+                                            <segue destination="Nx8-k7-nVB" kind="push" id="kXa-4T-zUF"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -125,12 +127,87 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="732" y="374"/>
+            <point key="canvasLocation" x="598" y="374"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="6RO-8q-s99">
+            <objects>
+                <viewController id="Nx8-k7-nVB" customClass="DetailViewController" customModule="MovieViewer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iOB-Kw-Odm">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="kAV-q6-LbM">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view opaque="NO" contentMode="scaleToFill" id="jgu-jf-oZc">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="359"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KvC-TZ-Ujw">
+                                                <rect key="frame" x="7" y="19" width="305" height="27"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="19"/>
+                                                <color key="textColor" red="0.396078431372549" green="0.54509803921568623" blue="0.76078431372549016" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8.5/10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bDn-3F-1jr">
+                                                <rect key="frame" x="125" y="50" width="75" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="20"/>
+                                                <color key="textColor" red="0.396078431372549" green="0.54509803921568623" blue="0.76078431372549016" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123 min" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Rbf-bb-KKF">
+                                                <rect key="frame" x="252" y="50" width="60" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="KohinoorBangla-Light" family="Kohinoor Bangla" pointSize="17"/>
+                                                <color key="textColor" red="0.396078431372549" green="0.54509803921568623" blue="0.76078431372549016" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genres" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ywp-GW-Clg">
+                                                <rect key="frame" x="8" y="104" width="304" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="15"/>
+                                                <color key="textColor" red="0.39607843139999999" green="0.5450980392" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overview" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FDP-e8-K8g">
+                                                <rect key="frame" x="8" y="141" width="305" height="24"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="17"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="u2d-jk-1oK"/>
+                    <connections>
+                        <outlet property="durationLabel" destination="Rbf-bb-KKF" id="BSO-87-OzO"/>
+                        <outlet property="genreLabel" destination="Ywp-GW-Clg" id="rAt-Vf-Npk"/>
+                        <outlet property="infoView" destination="jgu-jf-oZc" id="Aps-oF-Mcu"/>
+                        <outlet property="overviewLabel" destination="FDP-e8-K8g" id="hdf-x7-dWk"/>
+                        <outlet property="scrollView" destination="kAV-q6-LbM" id="XVB-Jf-WDf"/>
+                        <outlet property="titleLabel" destination="KvC-TZ-Ujw" id="ahy-zt-aKK"/>
+                        <outlet property="voteLabel" destination="bDn-3F-1jr" id="ChB-z0-mjB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rpQ-iZ-8LX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1018" y="374"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Q6C-SG-hRg">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Cl0-LO-vay" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MoviesNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="Cl0-LO-vay" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="SGT-1o-zib">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -149,4 +226,7 @@
     <resources>
         <image name="network.png" width="700" height="700"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="kXa-4T-zUF"/>
+    </inferredMetricsTieBreakers>
 </document>

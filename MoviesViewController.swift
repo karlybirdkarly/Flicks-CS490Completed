@@ -26,6 +26,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     var movies: [NSDictionary]?
     var filteredMovies: [NSDictionary]?
+    var endpoint: String!
     
     var refreshControl: UIRefreshControl!
     var button: UIButton = UIButton(type: UIButtonType.Custom)
@@ -45,9 +46,11 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         //MARK: - navigation bar settings
         navigationController?.navigationBar.barTintColor = UIColor.blackColor()
+        
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red: 241.0/255.0, green: 196.0/255.0, blue: 15.0/255.0, alpha: 1.0), NSFontAttributeName: UIFont(name: "KohinoorBangla-Semibold", size: 20.0)!]
+        
         print(navigationController?.navigationBar.titleTextAttributes)
-        navigationItem.title = "FLICKS"
+        navigationItem.title = "Movies"
         
         searchBar.tintColor = UIColor(red: 241.0/255.0, green: 196.0/255.0, blue: 15.0/255.0, alpha: 1.0)
         
@@ -75,31 +78,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         
         filteredMovies = movies
-        
-//        let nipName=UINib(nibName: "MovieCellNib", bundle:nil)
-//        collectionView.registerNib(nipName, forCellWithReuseIdentifier: "CollectionMovieCell")
-
-//        refreshControl.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
-//        actInd.color = UIColor.blackColor()
-//        footerView.addSubview(actInd)
-//        actInd.startAnimating()
-//        self.tableVIew.tableFooterView = footerView
-        
-//        searchBar.frame.origin.y  = (navigationController?.navigationBar.frame.height)!
-//        tableView.frame.origin.y = (navigationController?.navigationBar.frame.height)! + searchBar.frame.height
-        
-        
-        //EZLoadingActivity.showWithDelay("Loading movies...", disableUI: false, seconds: 2)
-        //EZLoadingActivity.show("Loading", disableUI: true)
-        
-//        var refreshControlViewFrame = self.tableView.bounds;
-//        refreshControlViewFrame.origin.y = -refreshControlViewFrame.size.height
-//        let refreshControlView = UIView(frame: refreshControlViewFrame)
-//        refreshControlView.backgroundColor = UIColor.blackColor()
-        
         //MARK: - Parse data using API
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
-        let url = NSURL(string:"https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
+        let url = NSURL(string:"https://api.themoviedb.org/3/movie/\(endpoint)?api_key=\(apiKey)")
         let request = NSURLRequest(URL: url!)
            print("I am here")
         let session = NSURLSession(
@@ -199,8 +180,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             
             let baseUrl = "http://image.tmdb.org/t/p/w500"
             if let posterPath = movie["poster_path"] as? String {
-                let imageUrl = NSURL(string: baseUrl + posterPath)
-                let imageRequest = NSURLRequest(URL: imageUrl!)
+                let posterUrl = NSURL(string: baseUrl + posterPath)
+                let imageRequest = NSURLRequest(URL: posterUrl!)
 
                 cell.posterView.setImageWithURLRequest(imageRequest, placeholderImage: UIImage(named: "placeholder,jpg"), success: {(imageRequest, imageResponse, image) -> Void in
                     
@@ -220,7 +201,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                         cell.posterView.image = UIImage(named: "placeholder.jpg")
                 })
                 
-                cell.posterView.setImageWithURL(imageUrl!)
+                cell.posterView.setImageWithURL(posterUrl!)
             } else {
                 cell.posterView.image = UIImage(named: "placeholder.jpg")
             }
@@ -236,7 +217,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
    
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return filteredMovies?.count ?? 0
-        print("I am displayed")
+
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -246,8 +227,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         let baseUrl = "http://image.tmdb.org/t/p/w500"
         if let posterPath = movie["poster_path"] as? String {
-            let imageUrl = NSURL(string: baseUrl + posterPath)
-            let imageRequest = NSURLRequest(URL: imageUrl!)
+            
+            let posterUrl = NSURL(string: baseUrl + posterPath)
+            let imageRequest = NSURLRequest(URL: posterUrl!)
 
             cell.posterImage.setImageWithURLRequest(imageRequest, placeholderImage: UIImage(named: "placeholder,jpg"), success: {(imageRequest, imageResponse, image) -> Void in
                 
@@ -266,7 +248,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                 }, failure: { (imageRequest, imageResponse, error) -> Void in
                     cell.posterImage.image = UIImage(named: "placeholder.jpg")
             })
-            cell.posterImage.setImageWithURL(imageUrl!)
+            cell.posterImage.setImageWithURL(posterUrl!)
         } else {
             cell.posterImage.image = UIImage(named: "placeholder.jpg")
         }
@@ -334,14 +316,43 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
 //
 //    }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+        
+        if let cell = sender as? UITableViewCell {
+            let indexPath = tableView.indexPathForCell(cell)
+            let movie = movies![indexPath!.row]
+            
+            let detailViewController = segue.destinationViewController as! DetailViewController
+            detailViewController.movie = movie
+            tableView.deselectRowAtIndexPath(indexPath!, animated: true)
+            
+        } else if let cell = sender as? UICollectionViewCell {
+            let indexPath = collectionView.indexPathForCell(cell)
+            let movie = movies![indexPath!.row]
+        
+            let detailViewController = segue.destinationViewController as! DetailViewController
+            detailViewController.movie = movie
+            collectionView.deselectItemAtIndexPath(indexPath!, animated: true)
+
+        }
+       
+        
+        print("prepare for segue called")
+
+           }
 
 }
+
+
+
+
+
+
+
+
+
+
