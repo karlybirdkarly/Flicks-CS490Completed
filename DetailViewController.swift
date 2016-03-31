@@ -35,7 +35,7 @@ class DetailViewController: UIViewController, APParallaxViewDelegate {
         
         addStarRatingView()
         
-        requestMovieWithIDFromJSON()
+
 //        print(movie)
         let title = movie["title"] as? String
         titleLabel.text = title
@@ -47,49 +47,6 @@ class DetailViewController: UIViewController, APParallaxViewDelegate {
         id = movie["id"] as? Int
         endpoint = String(id)
         
-        //Retrieve low resolution first, and then high resolution
-        let highBaseUrl = "https://image.tmdb.org/t/p/original"
-        let lowBaseUrl = "https://image.tmdb.org/t/p/w45"
-        if let posterPath = movie["poster_path"] as? String {
-            
-            let largeImageUrl = NSURL(string: highBaseUrl + posterPath)
-            let smallImageUrl = NSURL(string: lowBaseUrl + posterPath)
-            
-            let smallImageRequest = NSURLRequest(URL: smallImageUrl!)
-            let largeImageRequest = NSURLRequest(URL: largeImageUrl!)
-            
-            customView.setImageWithURLRequest(
-                smallImageRequest,
-                placeholderImage: UIImage(named: "placeholder.jpg"),
-                success: { (smallImageRequest, smallImageResponse, smallImage) -> Void in
-                    
-                    customView.alpha = 0.0
-                    customView.image = smallImage;
-      
-                    UIView.animateWithDuration(0.3, animations: { () -> Void in
-                        customView.alpha = 1.0
-                        }, completion: { (sucess) -> Void in
-                            
-                            customView.setImageWithURLRequest(largeImageRequest,
-                                                            placeholderImage: smallImage,
-                                                            success: { (largeImageRequest, largeImageResponse, largeImage) -> Void in
-                                    customView.image = largeImage;
-                                },
-                                failure: { (request, response, error) -> Void in
-                                })
-                    })
-                },
-                failure: { (request, response, error) -> Void in
-            })  
-        }
-    else {
-            customView.image = UIImage(named: "placeholder.jpg")
-         }
-        
-         scrollView.addParallaxWithView(customView, andHeight: 700, andShadow: true)
-   }
-    
-    func requestMovieWithIDFromJSON() {
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
         let url = NSURL(string:"https://api.themoviedb.org/3/movie/\(endpoint)?api_key=\(apiKey)")
         let request = NSURLRequest(URL: url!)
@@ -111,11 +68,11 @@ class DetailViewController: UIViewController, APParallaxViewDelegate {
                             
                             self.movieID = responseDictionary
                             
-                            //MARK: - runtime settings
+                            //runtime settings
                             let runtime = self.movieID!["runtime"] as? Int
                             self.durationLabel.text = String(runtime!) + " min"
                             
-                            //MARK: - country settings
+                            //country settings
                             let movieCountries = self.movieID!["production_countries"] as! [NSDictionary]
                             var xPoint: CGFloat = 8
                             for country in movieCountries {
@@ -164,8 +121,53 @@ class DetailViewController: UIViewController, APParallaxViewDelegate {
         });
         task.resume()
 
-    }
+        
+        //Retrieve low resolution first, and then high resolution
+        let highBaseUrl = "https://image.tmdb.org/t/p/original"
+        let lowBaseUrl = "https://image.tmdb.org/t/p/w45"
+        if let posterPath = movie["poster_path"] as? String {
+            
+            let largeImageUrl = NSURL(string: highBaseUrl + posterPath)
+            let smallImageUrl = NSURL(string: lowBaseUrl + posterPath)
+            
+            let smallImageRequest = NSURLRequest(URL: smallImageUrl!)
+            let largeImageRequest = NSURLRequest(URL: largeImageUrl!)
+            
+            customView.setImageWithURLRequest(
+                smallImageRequest,
+                placeholderImage: UIImage(named: "placeholder.jpg"),
+                success: { (smallImageRequest, smallImageResponse, smallImage) -> Void in
+                    
+                    customView.alpha = 0.0
+                    customView.image = smallImage;
+      
+                    UIView.animateWithDuration(0.3, animations: { () -> Void in
+                        customView.alpha = 1.0
+                        }, completion: { (sucess) -> Void in
+                            
+                            customView.setImageWithURLRequest(largeImageRequest,
+                                                            placeholderImage: smallImage,
+                                                            success: { (largeImageRequest, largeImageResponse, largeImage) -> Void in
+                                    customView.image = largeImage;
+                                },
+                                failure: { (request, response, error) -> Void in
+                                })
+                    })
+                },
+                failure: { (request, response, error) -> Void in
+            })  
+        }
+    else {
+            customView.image = UIImage(named: "placeholder.jpg")
+         }
+        
+         scrollView.addParallaxWithView(customView, andHeight: 700, andShadow: true)
+   }
     
+//    func requestMovieWithIDFromJSON() {
+//        
+//    }
+//    
     func addStarRatingView() {
         let starRatingView = AXRatingView()
         starRatingView.frame = CGRectMake(7, titleLabel.frame.size.height + 20, 110, 30)
