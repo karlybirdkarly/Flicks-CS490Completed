@@ -20,10 +20,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var networkErrorView: UIView!
     
     var collectionViewDisplayed: Bool = false
-    
-    //var moviesArray = [Movie]()
-    // var filteredMovies = [Movie]()
-    
+
     var movies: [NSDictionary]?
     var filteredMovies: [NSDictionary]?
     var endpoint: String!
@@ -34,60 +31,65 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //image for button
-        button.setImage(UIImage(named: "collection.png"), forState: UIControlState.Normal)
-        //function for button
-        button.addTarget(self, action: "changeViewClicked", forControlEvents: UIControlEvents.TouchUpInside)
-        //frame
-        button.frame = CGRectMake(0, 0, 30, 30)
-        let barButton = UIBarButtonItem(customView: button)
-        //leftbarbuttonitem is custom button(barbutton)
-        self.navigationItem.leftBarButtonItem = barButton
+        setLeftBarButton()
         
-        //MARK: - navigation bar settings
-        navigationController?.navigationBar.barTintColor = UIColor.blackColor()
+        setNavigationSettings()
         
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red: 241.0/255.0, green: 196.0/255.0, blue: 15.0/255.0, alpha: 1.0), NSFontAttributeName: UIFont(name: "KohinoorBangla-Semibold", size: 20.0)!]
-        
-        print(navigationController?.navigationBar.titleTextAttributes)
-        navigationItem.title = "Movies"
+        setRefreshControl()
         
         searchBar.tintColor = UIColor(red: 241.0/255.0, green: 196.0/255.0, blue: 15.0/255.0, alpha: 1.0)
         
-        //MARK: - refresh control settings
-        refreshControl = UIRefreshControl()
-        refreshControl.backgroundColor = UIColor.blackColor()
-        refreshControl.addTarget(self, action: "onRefresh", forControlEvents: UIControlEvents.ValueChanged)
-        tableView.insertSubview(refreshControl, atIndex: 0)
-        
-        //dismissKeyboard when user taps screen
-//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
-//        view.addGestureRecognizer(tap)
-        
         self.collectionView.hidden = true
         networkErrorView.hidden = true
+        
         tableView.backgroundColor = UIColor.blackColor()
         
-        
-        //MARK: - data sourses and delegates for collection view and table view
+        //delegates and datasources
         tableView.dataSource = self
         tableView.delegate = self
         collectionView.dataSource = self
         collectionView.delegate = self
         searchBar.delegate = self
         
-        
         filteredMovies = movies
-        //MARK: - Parse data using API
+        requestDataFromJSON()
+    }
+    
+    func setLeftBarButton() {
+        //set image for button
+        button.setImage(UIImage(named: "collection.png"), forState: UIControlState.Normal)
+        //add function for button
+        button.addTarget(self, action: "changeViewClicked", forControlEvents: UIControlEvents.TouchUpInside)
+        //set frame for button
+        button.frame = CGRectMake(0, 0, 30, 30)
+        let barButton = UIBarButtonItem(customView: button)
+        //make custom button(barbutton) as leftbarbuttonitem
+        self.navigationItem.leftBarButtonItem = barButton
+    }
+    
+    func setNavigationSettings() {
+        //MARK: - navigation bar settings
+        navigationController?.navigationBar.barTintColor = UIColor.blackColor()
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red: 241.0/255.0, green: 196.0/255.0, blue: 15.0/255.0, alpha: 1.0), NSFontAttributeName: UIFont(name: "KohinoorBangla-Semibold", size: 20.0)!]
+        navigationItem.title = "Movies"
+    }
+    
+    func setRefreshControl() {
+        //MARK: - refresh control settings
+        refreshControl = UIRefreshControl()
+        refreshControl.backgroundColor = UIColor.blackColor()
+        refreshControl.addTarget(self, action: "onRefresh", forControlEvents: UIControlEvents.ValueChanged)
+        tableView.insertSubview(refreshControl, atIndex: 0)
+    }
+    
+    func requestDataFromJSON() {
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
         let url = NSURL(string:"https://api.themoviedb.org/3/movie/\(endpoint)?api_key=\(apiKey)")
         let request = NSURLRequest(URL: url!)
-           print("I am here")
-        let session = NSURLSession(
-            configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
+        print("I am here")
+        let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
             delegate:nil,
-            delegateQueue:NSOperationQueue.mainQueue()
-        )
+            delegateQueue:NSOperationQueue.mainQueue())
         
         let task : NSURLSessionDataTask = session.dataTaskWithRequest(request,
             completionHandler: { (dataOrNil, response, error) in
@@ -107,24 +109,24 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                             self.movies = responseDictionary["results"] as! [NSDictionary]
                             self.filteredMovies = self.movies
                             
-//                            for item in self.m®ovies! {
-//                               
-//                                let title = item["title"] as! String
-//                                let overview = item["overview"] as! String
-//                                
-//                                let oneMovie = Movie()
-//                                oneMovie.title = title
-//                                oneMovie.overview = overview
-//                                
-//                                let baseUrl = "http://image.tmdb.org/t/p/w500"
-//                                if let posterPath = item["poster_path"] as? String {
-//                                    let imageUrl = NSURL(string: baseUrl + posterPath)
-//                                   oneMovie.posterUrl = imageUrl!
-//                                } else {
-//                                    oneMovie.posterUrl = NSURL(string: "http://img4.wikia.nocookie.net/__cb20150504190753/clashofclans/images/4/47/Placeholder.png")!
-//                                }
-//                                self.moviesArray.append(oneMovie)
-//                            }
+                            //                            for item in self.m®ovies! {
+                            //
+                            //                                let title = item["title"] as! String
+                            //                                let overview = item["overview"] as! String
+                            //
+                            //                                let oneMovie = Movie()
+                            //                                oneMovie.title = title
+                            //                                oneMovie.overview = overview
+                            //
+                            //                                let baseUrl = "http://image.tmdb.org/t/p/w500"
+                            //                                if let posterPath = item["poster_path"] as? String {
+                            //                                    let imageUrl = NSURL(string: baseUrl + posterPath)
+                            //                                   oneMovie.posterUrl = imageUrl!
+                            //                                } else {
+                            //                                    oneMovie.posterUrl = NSURL(string: "http://img4.wikia.nocookie.net/__cb20150504190753/clashofclans/images/4/47/Placeholder.png")!
+                            //                                }
+                            //                                self.moviesArray.append(oneMovie)
+                            //                            }
                             self.tableView.reloadData()
                             self.collectionView.reloadData()
                     }
@@ -135,6 +137,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                 }
         });
         task.resume()
+
     }
     
     //MARK: - SearchBar
@@ -168,61 +171,47 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MovieCell", forIndexPath: indexPath) as! MovieCell
-
-//        let movie = moviesArray[indexPath.row] as Movie
-//        cell.titleLabel.text = movie.title
-//        cell.overviewLabel.text = movie.overview
-//        cell.posterView.setImageWithURL(movie.posterUrl)
-        
         let movie = filteredMovies![indexPath.row]
-            let title = movie["title"] as! String
-            let overview = movie["overview"] as! String
-            
-            let baseUrl = "http://image.tmdb.org/t/p/w500"
-            if let posterPath = movie["poster_path"] as? String {
-                let posterUrl = NSURL(string: baseUrl + posterPath)
-                let imageRequest = NSURLRequest(URL: posterUrl!)
-
-                cell.posterView.setImageWithURLRequest(imageRequest, placeholderImage: UIImage(named: "placeholder,jpg"), success: {(imageRequest, imageResponse, image) -> Void in
-                    
-                    if imageResponse != nil {
-                        print("Image was not cached, fade in image")
+        let title = movie["title"] as! String
+        let overview = movie["overview"] as! String
+        
+        let baseUrl = "http://image.tmdb.org/t/p/w500"
+        if let posterPath = movie["poster_path"] as? String {
+            let posterUrl = NSURL(string: baseUrl + posterPath)
+            let imageRequest = NSURLRequest(URL: posterUrl!)
+            cell.posterView.setImageWithURLRequest(imageRequest, placeholderImage: UIImage(named: "placeholder,jpg"), success: {(imageRequest, imageResponse, image) -> Void in
+                if imageResponse != nil {
+                print("Image was not cached, fade in image")
                         cell.posterView.alpha = 0.0
                         cell.posterView.image = image
                         UIView.animateWithDuration(2.0, animations: {() -> Void in
                             cell.posterView.alpha = 1.0
                         })
-                        
-                    } else {
-                        print("Image was not cached so just update the image")
-                        cell.posterView.image = image
-                        }
-                    }, failure: { (imageRequest, imageResponse, error) -> Void in
-                        cell.posterView.image = UIImage(named: "placeholder.jpg")
-                })
-                
+                } else {
+                    print("Image was not cached so just update the image")
+                    cell.posterView.image = image
+                    }
+                }, failure: { (imageRequest, imageResponse, error) -> Void in
+                    cell.posterView.image = UIImage(named: "placeholder.jpg")
+                    })
                 cell.posterView.setImageWithURL(posterUrl!)
-            } else {
+        } else {
                 cell.posterView.image = UIImage(named: "placeholder.jpg")
             }
-            cell.titleLabel.text = title
-            cell.overviewLabel.text = overview
-
-        print("row \(indexPath.row)")
+        cell.titleLabel.text = title
+        cell.overviewLabel.text = overview
+        //print("row \(indexPath.row)")
         return cell
     }
     
     
-//MARK: - CollectionView
-   
+    //MARK: - CollectionView
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return filteredMovies?.count ?? 0
-
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionMovieCell", forIndexPath: indexPath) as! CollectionMovieCell
-        
         let movie = filteredMovies![indexPath.row]
         
         let baseUrl = "http://image.tmdb.org/t/p/w500"
@@ -257,7 +246,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     //MARK: - Switch between CollectionView and TableView
     func changeViewClicked() {
-        
         var fromView, toView: UIView!
         if (self.collectionView.hidden) {
             fromView = self.tableView
@@ -295,10 +283,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             self.refreshControl.endRefreshing()
         })
     }
-    //MARK: - Dismiss keyboard
-//    func dismissKeyboard() {
-//        searchBar.endEditing(true)
-//    }
+
     //MARK: - Status bar style
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent;
@@ -318,8 +303,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
 
     
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if let cell = sender as? UITableViewCell {
@@ -339,11 +322,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             collectionView.deselectItemAtIndexPath(indexPath!, animated: true)
 
         }
-       
-        
-        print("prepare for segue called")
-
-           }
+//        print("prepare for segue called")
+    }
 
 }
 

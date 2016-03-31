@@ -9,16 +9,8 @@
 /* Begin PBXBuildFile section */
 		20DCBFD8DC5CB6FC3303DBBF /* Pods_MovieViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92239895E039F0E64EC27040 /* Pods_MovieViewer.framework */; };
 		751128561C567315001D9D6B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751128551C567315001D9D6B /* DetailViewController.swift */; };
-		7511285B1C568805001D9D6B /* topRatedLight.png in Resources */ = {isa = PBXBuildFile; fileRef = 751128571C568805001D9D6B /* topRatedLight.png */; };
-		7511285C1C568805001D9D6B /* topRated.png in Resources */ = {isa = PBXBuildFile; fileRef = 751128581C568805001D9D6B /* topRated.png */; };
-		7511285D1C568805001D9D6B /* nowPlayingLight.png in Resources */ = {isa = PBXBuildFile; fileRef = 751128591C568805001D9D6B /* nowPlayingLight.png */; };
-		7511285E1C568805001D9D6B /* nowPlaying.png in Resources */ = {isa = PBXBuildFile; fileRef = 7511285A1C568805001D9D6B /* nowPlaying.png */; };
 		751128681C582096001D9D6B /* UIScrollView+APParallaxHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 751128671C582096001D9D6B /* UIScrollView+APParallaxHeader.m */; };
 		75282DEE1C5B0959003526E9 /* AXRatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75282DED1C5B0959003526E9 /* AXRatingView.m */; };
-		752D14961C51DB8100A562D6 /* table.png in Resources */ = {isa = PBXBuildFile; fileRef = 752D14941C51DB8100A562D6 /* table.png */; };
-		752D14971C51DB8100A562D6 /* collection.png in Resources */ = {isa = PBXBuildFile; fileRef = 752D14951C51DB8100A562D6 /* collection.png */; };
-		756B28301C49548B00CB72BE /* placeholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 756B282F1C49548B00CB72BE /* placeholder.jpg */; };
-		756B28321C49922700CB72BE /* network.png in Resources */ = {isa = PBXBuildFile; fileRef = 756B28311C49922700CB72BE /* network.png */; };
 		7577CCB61C4879A50096A5A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7577CCB51C4879A50096A5A8 /* AppDelegate.swift */; };
 		7577CCBB1C4879A50096A5A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7577CCB91C4879A50096A5A8 /* Main.storyboard */; };
 		7577CCBD1C4879A50096A5A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7577CCBC1C4879A50096A5A8 /* Assets.xcassets */; };
@@ -32,19 +24,11 @@
 /* Begin PBXFileReference section */
 		651EF80430B4542D5AFC5DEB /* Pods-MovieViewer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieViewer.release.xcconfig"; path = "Pods/Target Support Files/Pods-MovieViewer/Pods-MovieViewer.release.xcconfig"; sourceTree = "<group>"; };
 		751128551C567315001D9D6B /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		751128571C568805001D9D6B /* topRatedLight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = topRatedLight.png; sourceTree = "<group>"; };
-		751128581C568805001D9D6B /* topRated.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = topRated.png; sourceTree = "<group>"; };
-		751128591C568805001D9D6B /* nowPlayingLight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nowPlayingLight.png; sourceTree = "<group>"; };
-		7511285A1C568805001D9D6B /* nowPlaying.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nowPlaying.png; sourceTree = "<group>"; };
 		751128651C582095001D9D6B /* MovieViewer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MovieViewer-Bridging-Header.h"; sourceTree = "<group>"; };
 		751128661C582096001D9D6B /* UIScrollView+APParallaxHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+APParallaxHeader.h"; sourceTree = "<group>"; };
 		751128671C582096001D9D6B /* UIScrollView+APParallaxHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+APParallaxHeader.m"; sourceTree = "<group>"; };
 		75282DEC1C5B0959003526E9 /* AXRatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXRatingView.h; sourceTree = "<group>"; };
 		75282DED1C5B0959003526E9 /* AXRatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXRatingView.m; sourceTree = "<group>"; };
-		752D14941C51DB8100A562D6 /* table.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = table.png; sourceTree = "<group>"; };
-		752D14951C51DB8100A562D6 /* collection.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = collection.png; sourceTree = "<group>"; };
-		756B282F1C49548B00CB72BE /* placeholder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = placeholder.jpg; path = ../placeholder.jpg; sourceTree = "<group>"; };
-		756B28311C49922700CB72BE /* network.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = network.png; sourceTree = "<group>"; };
 		7577CCB21C4879A50096A5A8 /* MovieViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7577CCB51C4879A50096A5A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7577CCBA1C4879A50096A5A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -83,8 +67,6 @@
 		7577CCA91C4879A50096A5A8 = {
 			isa = PBXGroup;
 			children = (
-				7577CCCA1C489E360096A5A8 /* View Controllers */,
-				7577CCC91C489E2C0096A5A8 /* Views */,
 				7577CCB41C4879A50096A5A8 /* MovieViewer */,
 				7577CCB31C4879A50096A5A8 /* Products */,
 				4DEB3D16E4E65857AF880B5E /* Pods */,
@@ -103,20 +85,14 @@
 		7577CCB41C4879A50096A5A8 /* MovieViewer */ = {
 			isa = PBXGroup;
 			children = (
+				75D7DAF31CACA53200269EDF /* Models */,
+				7577CCCA1C489E360096A5A8 /* View Controllers */,
+				7577CCC91C489E2C0096A5A8 /* Views */,
 				7577CCB51C4879A50096A5A8 /* AppDelegate.swift */,
 				7577CCB91C4879A50096A5A8 /* Main.storyboard */,
 				7577CCBC1C4879A50096A5A8 /* Assets.xcassets */,
-				756B282F1C49548B00CB72BE /* placeholder.jpg */,
-				752D14941C51DB8100A562D6 /* table.png */,
-				752D14951C51DB8100A562D6 /* collection.png */,
-				756B28311C49922700CB72BE /* network.png */,
-				751128571C568805001D9D6B /* topRatedLight.png */,
-				751128581C568805001D9D6B /* topRated.png */,
-				751128591C568805001D9D6B /* nowPlayingLight.png */,
-				7511285A1C568805001D9D6B /* nowPlaying.png */,
 				7577CCBE1C4879A50096A5A8 /* LaunchScreen.storyboard */,
 				7577CCC11C4879A50096A5A8 /* Info.plist */,
-				757A4ED31C4B094A00BF2240 /* Movie.swift */,
 			);
 			path = MovieViewer;
 			sourceTree = "<group>";
@@ -133,6 +109,7 @@
 				751128651C582095001D9D6B /* MovieViewer-Bridging-Header.h */,
 			);
 			name = Views;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		7577CCCA1C489E360096A5A8 /* View Controllers */ = {
@@ -142,6 +119,15 @@
 				751128551C567315001D9D6B /* DetailViewController.swift */,
 			);
 			name = "View Controllers";
+			path = ..;
+			sourceTree = "<group>";
+		};
+		75D7DAF31CACA53200269EDF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				757A4ED31C4B094A00BF2240 /* Movie.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		77E5AD7C055BC9F75CD3E74A /* Frameworks */ = {
@@ -213,17 +199,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7511285D1C568805001D9D6B /* nowPlayingLight.png in Resources */,
-				756B28321C49922700CB72BE /* network.png in Resources */,
-				752D14971C51DB8100A562D6 /* collection.png in Resources */,
-				752D14961C51DB8100A562D6 /* table.png in Resources */,
 				7577CCC01C4879A50096A5A8 /* LaunchScreen.storyboard in Resources */,
-				7511285C1C568805001D9D6B /* topRated.png in Resources */,
-				7511285E1C568805001D9D6B /* nowPlaying.png in Resources */,
-				756B28301C49548B00CB72BE /* placeholder.jpg in Resources */,
 				7577CCBD1C4879A50096A5A8 /* Assets.xcassets in Resources */,
 				7577CCBB1C4879A50096A5A8 /* Main.storyboard in Resources */,
-				7511285B1C568805001D9D6B /* topRatedLight.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
