@@ -1,6 +1,6 @@
-# Project 2 - *Flicks*
+# Project 2 - *Oscar*
 
-**Flicks** is a movies app displaying box office and top rental DVDs using [The Movie Database API](http://docs.themoviedb.apiary.io/#).
+**Oscar** is a movies app displaying box office and top rental DVDs using [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
 Time spent: **14** hours spent in total
 
@@ -19,13 +19,12 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-- [X] Worked with movie id and retrieved data from movie id NSDictionary
-- [X] Added a pod for poster view
+- [X] When user clicks on the movie, they will see a detailed view for them which gives an expanded poster, name, rating, lsit of countries involved in production, genres of a movie, duration, and a description.
+- [X] For a poster view I added the pod, APPArallaxHeader, which grows as user scrolls down which looks presentable with high quality images.
 
-Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
+I want to discuss in class:
 
-1. Github (I cannot push my changes to existing repository, because it is impossible without pulling after I added ReadMe file. I spent a lot of time for github, please give a short tutotrial about push, pull, amend, merges, and branches)
-2. Again GitHub
+1. I am amazed about how much opportunity application lifecycle gives, let's discuss advanced implementations that in class.
 
 ## Video Walkthrough 
 
